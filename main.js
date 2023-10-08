@@ -9,7 +9,7 @@ function Setup(){
     XHR.onreadystatechange = function(){
         if (XHR.readyState === 4 && XHR.status === 200){
             Data = XHR.responseText
-            console.log("DATA: "+Data)
+            console.log("DATA: \n"+Data)
             ProcessData()
         }
     }
@@ -107,21 +107,9 @@ function Main(){
                     }
                 }
                 if (KeyCode){
-                    var KeyboardEvent = document.createEvent('KeyboardEvent');
-                    var InitMethod = typeof KeyboardEvent.initKeyboardEvent !== 'undefined' ? 'initKeyboardEvent' : 'initKeyEvent';
-                    KeyboardEvent[InitMethod](
-                        'keypress',
-                        true,
-                        false,
-                        window,
-                        false,
-                        false,
-                        false,
-                        false,
-                        KeyCode,
-                        0
-                    )
-                    document.dispatchEvent(KeyboardEvent);
+                    console.log("Pressing Key: "+String(KeyCode));
+                    var Event = new KeyboardEvent('keydown',{'key':Char});
+                    document.dispatchEvent(Event);
                 } else {
                     console.log("KeyCode not found for KEY: "+Char);
                 }

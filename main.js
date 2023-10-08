@@ -82,37 +82,49 @@ function Main(){
                     Words.push(Char);
                 }
             }
-            ClassNameWait(Retracting,RetractingElement => {
-                if (RetractingElement){
-                    console.log("Error: Confused");
+            if (RetractingElement){
+                console.log("Error: Confused");
+            } else {
+                console.log("Race Started");
+            }
+            console.log("Words:");
+            console.log(Words);
+            for (let index in Words){
+                var Char = Words[index];
+                let KeyCode = null;
+                /*
+                jQuery.event.trigger({
+                    type: 'keypress',
+                    which: String(Char).charCodeAt(0)
+                })*/
+                for (let index2 in DataArray){
+                    var Object = DataArray[index2];
+                    var Key = Object[0];
+                    var Code = Object[1];
+                    if (Key == Char){
+                        KeyCode = Code;
+                    }
+                }
+                if (KeyCode){
+                    var KeyboardEvent = document.createEvent('KeyboardEvent');
+                    var InitMethod = typeof KeyboardEvent.initKeyboardEvent !== 'undefined' ? 'initKeyboardEvent' : 'initKeyEvent';
+                    KeyboardEvent[InitMethod](
+                        'keypress',
+                        true,
+                        false,
+                        window,
+                        false,
+                        false,
+                        false,
+                        false,
+                        KeyCode,
+                        0
+                    )
+                    document.dispatchEvent(KeyboardEvent);
                 } else {
-                    console.log("Race Started");
+                    console.log("KeyCode not found for KEY: "+Char);
                 }
-                console.log("Words:");
-                console.log(Words);
-                for (let index in Words){
-                    var Char = Words[index];
-                    let KeyCode = null;
-                    /*
-                    jQuery.event.trigger({
-                        type: 'keypress',
-                        which: String(Char).charCodeAt(0)
-                    })*/
-                    for (let index2 in DataArray){
-                        var Object = DataArray[index2];
-                        var Key = Object[0];
-                        var Code = Object[1];
-                        if (Key == Char){
-                            KeyCode = Code;
-                        }
-                    }
-                    if (KeyCode){
-        
-                    } else {
-                        console.log("KeyCode not found for KEY: "+Char)
-                    }
-                }
-            })
+            }
         });
     } else {
         console.log("Error: SetUp Function not found");

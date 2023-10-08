@@ -107,14 +107,57 @@ function Main(){
                     }
                 }
                 if (KeyCode){
-                    var Root = document.querySelector(".dash-copy-input");
+                    function GetAllEventListeners(element, eventType) {
+                        const eventListeners = [];
+                      
+                        function findEventListeners(node) {
+                          if (!node) return;
+                      
+                          const listenersOfType = [];
+                      
+                          // Get all registered event listeners on the element
+                          const registeredListeners = node.__events;
+                          
+                          if (registeredListeners && registeredListeners[eventType]) {
+                            for (const listener of registeredListeners[eventType]) {
+                              listenersOfType.push({
+                                type: eventType,
+                                listener: listener.listener,
+                                useCapture: listener.useCapture || false, // Default to false if useCapture is not specified
+                              });
+                            }
+                          }
+                      
+                          if (listenersOfType.length > 0) {
+                            eventListeners.push({
+                              element: node,
+                              listeners: listenersOfType,
+                            });
+                          }
+                      
+                          for (const childNode of node.childNodes) {
+                            findEventListeners(childNode);
+                          }
+                        }
+                      
+                        findEventListeners(element);
+                      
+                        return eventListeners;
+                      }
                     console.log("Pressing Key: "+String(KeyCode));
-                    var Event = new KeyboardEvent('keydown',{'key':Char});
-                    Root.dispatchEvent(Event);
-                    var Event2 = new KeyboardEvent('keypress',{'key':Char});
-                    Root.dispatchEvent(Event2);
-                    var Event3 = new KeyboardEvent('keypress',{'key':Char});
-                    Root.dispatchEvent(Event3);
+                    const KeyEvent = new KeyboardEvent('keydown', {
+                        key: Key,
+                        bubbles: true,
+                        cancelable: true,
+                        keyCode: KeyCode,
+                        which: 13
+                    })
+                    var Lisitners = GetAllEventListeners(document,"keypress")
+                    for (let index in Lisitners){
+                        var Object = Lisitners[index];
+                        var Element = Object.element;
+                        Element.dispatchEvent(KeyEvent);
+                    }
                 } else {
                     console.log("KeyCode not found for KEY: "+Char);
                 }

@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>KeyCodeMapping</title>
+    </head>
+    <body>
+        <h1>Key Code Mapping</h1>
+        <h3 id="bp">Buttons Pressed</h3>
+        <br>
+        <p id="dat"></p>
+        <script src="map.js"></script>
+        <script>
+            const BP = document.getElementById("bp")
+            const DataBox = document.getElementById("dat")
+            function Update(){
+                var Data = GetKeyCodes()
+                DataBox.innerText = Data
+            }
+            document.addEventListener("keypress",function(){
+                Update()
+            })
+        </script>
+    </body>
+</html>

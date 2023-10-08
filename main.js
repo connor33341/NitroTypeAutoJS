@@ -72,9 +72,7 @@ function Main(){
         if (DashLetterElement){
             console.log("Game Loaded");
         } else {
-            while (DashLetterElement == null){
-                DashLetterElement = document.getElementsByClassName(DashLetter)[0];
-            }
+            console.log("Error: Not Found");
         }
         let Elements = document.getElementsByClassName("."+DashLetter);
         let Words = [];

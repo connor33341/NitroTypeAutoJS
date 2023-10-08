@@ -98,13 +98,4 @@ function Main(){
         console.log("Error: SetUp Function not found");
     };
 };
-function Load(){
-    ScriptElement.onload = function(){
-        console.log("Script 1 Loaded");
-        ScriptElement2.onload = function(){
-            console.log("Script 2 Loaded");
-            Main();
-        };
-    };
-};
-Load();
+Main();

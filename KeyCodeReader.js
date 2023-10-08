@@ -20,13 +20,17 @@ function ProcessData(){
         console.log("Processing Line#: "+String(index))
         var LineData = Line.split(";")[0]
         var LineString = LineData.split("'")
-        var Key = LineString[1].split("'")[0]
-        if (Key == "_REMOVED"){
-            console.log("Key Removed")
+        if (LineString[1] && LineString[2]){
+            var Key = LineString[1].split("'")[0]
+            if (Key == "_REMOVED"){
+                console.log("Key Removed")
+            } else {
+                var KeyCode = LineString[2].split(":")[1]
+                DataArray.push([Key,KeyCode])
+                console.log("Added KEY: "+Key+" & KEYCODE: "+KeyCode)
+            }
         } else {
-            var KeyCode = LineString[2].split(":")[1]
-            DataArray.push([Key,KeyCode])
-            console.log("Added KEY: "+Key+" & KEYCODE: "+KeyCode)
+            console.log("Error: Bugged Line")
         }
     }
 }

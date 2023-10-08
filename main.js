@@ -1,6 +1,6 @@
 // connor33341, Yes I am using semi colins 
-const DashLetter = ".dash-letter";
-const Retracting = ".is-retracting";
+const DashLetter = "dash-letter";
+const Retracting = "is-retracting";
 const Endpoint = "https://raw.githubusercontent.com/connor33341/NitroTypeAutoJS/main/config/ButtonMap.txt"
 let Data = ""
 let DataArray = []

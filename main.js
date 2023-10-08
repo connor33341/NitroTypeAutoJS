@@ -152,7 +152,7 @@ function Main(){
                         keyCode: KeyCode,
                         which: 13
                     })
-                    var Lisitners = GetAllEventListeners(document,"keypress")
+                    var Lisitners = GetAllEventListeners(document,"keypress");
                     for (let index in Lisitners){
                         var Object = Lisitners[index];
                         var Element = Object.element;

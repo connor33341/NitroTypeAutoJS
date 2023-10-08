@@ -74,7 +74,7 @@ function Main(){
         } else {
             console.log("Error: Not Found");
         }
-        let Elements = document.getElementsByClassName("."+DashLetter);
+        let Elements = document.querySelectorAll(`.${DashLetter}`);
         let Words = [];
         for (let index in Elements){
             var Element = Elements[index];
@@ -90,6 +90,8 @@ function Main(){
         } else {
             console.log("Race Started");
         }
+        console.log("Words:");
+        console.log(Words);
     } else {
         console.log("Error: SetUp Function not found");
     };

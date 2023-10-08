@@ -107,9 +107,14 @@ function Main(){
                     }
                 }
                 if (KeyCode){
+                    var Root = document.querySelector(".dash-copy-input");
                     console.log("Pressing Key: "+String(KeyCode));
                     var Event = new KeyboardEvent('keydown',{'key':Char});
-                    document.dispatchEvent(Event);
+                    Root.dispatchEvent(Event);
+                    var Event2 = new KeyboardEvent('keypress',{'key':Char});
+                    Root.dispatchEvent(Event2);
+                    var Event3 = new KeyboardEvent('keypress',{'key':Char});
+                    Root.dispatchEvent(Event3);
                 } else {
                     console.log("KeyCode not found for KEY: "+Char);
                 }

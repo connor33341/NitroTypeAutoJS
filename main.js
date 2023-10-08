@@ -4,24 +4,13 @@ const WaitForElement = "https://raw.githubusercontent.com/connor33341/NitroTypeA
 let ScriptData = "";
 const DashLetter = ".dash-letter";
 const Retracting = ".is-retracting";
+var ScriptElement = document.createElement("script");
+ScriptElement.src = KeyCodeReader;
+document.head.appendChild(ScriptElement);
+var ScriptElement2 = document.createElement("script");
+ScriptElement2.src = WaitForElement;
+document.head.appendChild(ScriptElement2);
 function Main(){
-    /*
-    var XHR = new XMLHttpRequest();
-    XHR.onreadystatechange = function(){
-        if (XHR.readyState === 4 && XHR.status === 200){
-            ScriptData = XHR.responseText;
-        };
-    };
-    XHR.open("GET",JSEndpoint,true);
-    XHR.send();
-    */
-    var ScriptElement = document.createElement("script");
-    //ScriptElement.textContent = ScriptData;
-    ScriptElement.src = KeyCodeReader;
-    document.head.appendChild(ScriptElement);
-    var ScriptElement2 = document.createElement("script");
-    ScriptElement2.src = WaitForElement;
-    document.head.appendChild(ScriptElement2);
     if (true){
         if (typeof jQuery == "undefined"){
             var jQueryScript = document.createElement("script");
@@ -58,4 +47,8 @@ function Main(){
         console.log("Error: SetUp Function not found");
     };
 };
-Main();
+ScriptElement.onload = function(){
+    ScriptElement2.onload = function(){
+        Main();
+    }
+}

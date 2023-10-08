@@ -36,12 +36,13 @@ function ProcessData(){
             console.log("Error: Bugged Line")
         }
     }
+    Main();
 }
-function ClassNameWait(className) {
+function ClassNameWait(className, callback) {
     const targetElement = document.querySelector(`.${className}`);
     if (targetElement) {
-      console.log("Element already exists");
-      return targetElement;
+      callback(targetElement);
+      return;
     }
     const observer = new MutationObserver(mutations => {
       mutations.forEach(mutation => {
@@ -49,18 +50,15 @@ function ClassNameWait(className) {
           const addedNode = Array.from(mutation.addedNodes).find(node => {
             return node.classList && node.classList.contains(className);
           });
-          
           if (addedNode) {
             observer.disconnect();
-            console.log("Element added");
-            return addedNode;
+            callback(addedNode);
           }
         }
       });
     });
     observer.observe(document.body, { childList: true, subtree: true });
   }
-  
 function Main(){
     if (true){
         if (typeof jQuery == "undefined"){
@@ -68,54 +66,56 @@ function Main(){
             jQueryScript.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js";
             document.head.appendChild(jQueryScript);
         }
-        let DashLetterElement = ClassNameWait(DashLetter)
-        if (DashLetterElement){
-            console.log("Game Loaded");
-        } else {
-            console.log("Error: Not Found");
-        }
-        let Elements = document.querySelectorAll(`.${DashLetter}`);
-        let Words = [];
-        for (let index in Elements){
-            var Element = Elements[index];
-            var Text = Element.textContent;
-            for (let index2 in Text){
-                var Char = Text[index2];
-                Words.push(Char);
+        ClassNameWait(DashLetter,DashLetterElement => {
+            if (DashLetterElement){
+                console.log("Game Loaded");
+            } else {
+                console.log("Error: Not Found");
             }
-        }
-        let RetractingElement = document.getElementsByClassName(Retracting)[0];
-        if (RetractingElement){
-            console.log("Error: Confused");
-        } else {
-            console.log("Race Started");
-        }
-        console.log("Words:");
-        console.log(Words);
-        for (let index in Words){
-            var Char = Words[index];
-            let KeyCode = null;
-            jQuery.event.trigger({
-                type: 'keypress',
-                which: String(Char).charCodeAt(0)
-            })
-            /*
-            for (let index2 in DataArray){
-                var Object = DataArray[index2];
-                var Key = Object[0];
-                var Code = Object[1];
-                if (Key == Char){
-                    KeyCode = Code;
+            let Elements = document.querySelectorAll(`.${DashLetter}`);
+            let Words = [];
+            for (let index in Elements){
+                var Element = Elements[index];
+                var Text = Element.textContent;
+                for (let index2 in Text){
+                    var Char = Text[index2];
+                    Words.push(Char);
                 }
             }
-            if (KeyCode){
-
-            } else {
-                console.log("KeyCode not found for KEY: "+Char)
-            }*/
-        }
+            ClassNameWait(Retracting,RetractingElement => {
+                if (RetractingElement){
+                    console.log("Error: Confused");
+                } else {
+                    console.log("Race Started");
+                }
+                console.log("Words:");
+                console.log(Words);
+                for (let index in Words){
+                    var Char = Words[index];
+                    let KeyCode = null;
+                    /*
+                    jQuery.event.trigger({
+                        type: 'keypress',
+                        which: String(Char).charCodeAt(0)
+                    })*/
+                    for (let index2 in DataArray){
+                        var Object = DataArray[index2];
+                        var Key = Object[0];
+                        var Code = Object[1];
+                        if (Key == Char){
+                            KeyCode = Code;
+                        }
+                    }
+                    if (KeyCode){
+        
+                    } else {
+                        console.log("KeyCode not found for KEY: "+Char)
+                    }
+                }
+            })
+        });
     } else {
         console.log("Error: SetUp Function not found");
     };
 };
-Main();
+Setup();

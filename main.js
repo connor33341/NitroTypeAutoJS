@@ -1,6 +1,6 @@
 // connor33341, Yes I am using semi colins 
 const KeyCodeReader = "https://raw.githubusercontent.com/connor33341/NitroTypeAutoJS/main/KeyCodeReader.js";
-const WaitForElement = "";
+const WaitForElement = "https://raw.githubusercontent.com/connor33341/NitroTypeAutoJS/main/WaitForElement.js";
 let ScriptData = "";
 const DashLetter = ".dash-letter";
 const Retracting = ".is-retracting";
@@ -28,7 +28,7 @@ function Main(){
             jQueryScript.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js";
             document.head.appendChild(jQueryScript);
         }
-        let DashLetterElement = document.getElementsByClassName(DashLetter)[0];
+        let DashLetterElement = ClassNameWait(DashLetter)
         if (DashLetterElement){
             console.log("Game Loaded");
         } else {

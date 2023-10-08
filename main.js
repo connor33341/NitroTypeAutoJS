@@ -76,7 +76,7 @@ function Main(){
                 DashLetterElement = document.getElementsByClassName(DashLetter)[0];
             }
         }
-        let Elements = document.getElementsByClassName(DashLetter);
+        let Elements = document.getElementsByClassName("."+DashLetter);
         let Words = [];
         for (let index in Elements){
             var Element = Elements[index];
@@ -88,11 +88,9 @@ function Main(){
         }
         let RetractingElement = document.getElementsByClassName(Retracting)[0];
         if (RetractingElement){
-            console.log("Race Started");
+            console.log("Error: Confused");
         } else {
-            while (RetractingElement == null){
-                RetractingElement = document.getElementsByClassName(Retracting)[0];
-            }
+            console.log("Race Started");
         }
     } else {
         console.log("Error: SetUp Function not found");

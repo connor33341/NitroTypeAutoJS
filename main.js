@@ -82,11 +82,12 @@ function Main(){
                     Words.push(Char);
                 }
             }
+            /*
             if (RetractingElement){
                 console.log("Error: Confused");
             } else {
                 console.log("Race Started");
-            }
+            }*/
             console.log("Words:");
             console.log(Words);
             for (let index in Words){

@@ -8,3 +8,9 @@
 ---
 ### How to use
 It is quite simple, paste the `main.js` code into the browser's console
+Option 2:
+```js
+var ScriptElement = document.createElement("script");
+ScriptElement.src = "https://raw.githubusercontent.com/connor33341/NitroTypeAutoJS/main/main.js";
+document.head.appendChild(ScriptElement);
+```

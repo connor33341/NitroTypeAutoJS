@@ -145,15 +145,41 @@ function Main(){
                         return eventListeners;
                       }
                     console.log("Pressing Key: "+String(KeyCode));
-                    const KeyEvent = new KeyboardEvent('keydown', {
-                        key: Key,
-                        bubbles: true,
-                        cancelable: true,
-                        keyCode: KeyCode,
-                        which: 13
-                    })
-                    var Lisitners = GetAllEventListeners(document,"keypress");
-                    for (let index in Lisitners){
+                    var LisitnersKeyPress = GetAllEventListeners(document,"keypress");
+                    for (let index in LisitnersKeyPress){
+                        const KeyEvent = new KeyboardEvent('keypress', {
+                            key: Key,
+                            bubbles: true,
+                            cancelable: true,
+                            keyCode: KeyCode,
+                            which: 13
+                        })
+                        var Object = Lisitners[index];
+                        var Element = Object.element;
+                        Element.dispatchEvent(KeyEvent);
+                    }
+                    var LisitnersKeyDown = GetAllEventListeners(document,"keydown");
+                    for (let index in LisitnersKeyDown){
+                        const KeyEvent = new KeyboardEvent('keydown', {
+                            key: Key,
+                            bubbles: true,
+                            cancelable: true,
+                            keyCode: KeyCode,
+                            which: 13
+                        })
+                        var Object = Lisitners[index];
+                        var Element = Object.element;
+                        Element.dispatchEvent(KeyEvent);
+                    }
+                    var LisitnersKeyUp = GetAllEventListeners(document,"keydown");
+                    for (let index in LisitnersKeyUp){
+                        const KeyEvent = new KeyboardEvent('keyup', {
+                            key: Key,
+                            bubbles: true,
+                            cancelable: true,
+                            keyCode: KeyCode,
+                            which: 13
+                        })
                         var Object = Lisitners[index];
                         var Element = Object.element;
                         Element.dispatchEvent(KeyEvent);

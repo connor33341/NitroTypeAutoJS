@@ -4,7 +4,8 @@
  ### Progress:
  - [x] KeyCode Map
 - [x] Web Scraper
-- [ ] Button Emulation
+- [x] Button Emulation
+- [ ] Nitrotype Compatible Emmulaion
 ---
 ### How to use
 It is quite simple, paste the `main.js` code into the browser's console
